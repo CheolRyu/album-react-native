@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, View } from 'react-native';
 import axios from 'axios';
 
 export default class AlbumList extends Component {
@@ -7,20 +7,15 @@ export default class AlbumList extends Component {
   componentWillMount() {
     axios
       .get('https://rallycoding.herokuapp.com/api/music_albums')
-      .then(res => this.setState({ albums: res.data }));
+      .then(response => this.setState({ albums: response.data }));
   }
+
+  renderAlbums() {
+    return this.state.albums.map(album => <Text key={album.title}>{album.title}</Text>);
+  }
+
   render() {
-    const { textStyle, cardStyle } = styles;
     console.log(this.state);
-    return (
-      <View style={cardStyle}>
-        <Text style={textStyle}> ALBUM LIST </Text>
-      </View>
-    );
+    return <View>{this.renderAlbums()}</View>;
   }
 }
-
-const styles = StyleSheet.create({
-  textStyle: {},
-  cardStyle: {}
-});
