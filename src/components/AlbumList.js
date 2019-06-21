@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import axios from 'axios';
 import AlbumDetail from './AlbumDetails';
+import Card from './Card';
 
 export default class AlbumList extends Component {
   state = { albums: [] };
